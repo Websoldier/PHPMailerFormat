@@ -1,14 +1,10 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
+namespace Websolider;
+
 use Illuminate\Validation;
 use Illuminate\Filesystem;
 use Illuminate\Translation;
-
-// defined('API_START') or die(header($_SERVER['SERVER_PROTOCOL'] . ' 403 Forbidden', true, 403));
-define('EMAIL_DEBUG_ADDRESS', 'trashmailsizh@ya.ru');
-
-require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 /**
  * PHPMailer decorator class
@@ -145,41 +141,3 @@ class PHPMailerFormat
         echo json_encode($this->status);
     }
 }
-
-class FormField {
-    public $key;
-    public $label;
-    public $value;
-    public $rules;
-
-    function __construct($key, $label, $rules)
-    {
-        $this->key   = $key;
-        $this->label = $label;
-        $this->rules = $rules;
-    }
-
-    function setValue($value)
-    {
-        $this->value = $value;
-    }
-}
-
-$msg = 'Перезвоните %1$s <%3$s> по номеру телефона %2$s';
-$fields = [
-    new FormField('name', 'Имя', 'required|min:2|max:50'),
-    new FormField('phone', 'Номер_телефона', 'required|min:4|max:50'),
-    new FormField('email', 'Электронный_адрес', 'email|min:4|max:50'),
-];
-
-$mail = new PHPMailerFormat(new PHPMailer(), $fields);
-$mail->setFrom('Nick');
-$mail->parseValues($_GET);
-
-if ($mail->validate()) {
-    $mail->setLetter('Заявка с сайта', $msg);
-    $mail->send('nikolays93@yandex.ru');
-}
-
-$mail->response();
-die();
