@@ -1,0 +1,14 @@
+{
+    "name": "Websolider/phpmailerformat",
+    "authors": [
+        {
+            "name": "Websolider",
+            "email": "nikolays93@ya.ru"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.1",
+        "illuminate/validation": "^8.11",
+        "illuminate/translation": "^8.11"
+    }
+}
