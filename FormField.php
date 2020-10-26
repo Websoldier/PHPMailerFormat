@@ -1,5 +1,7 @@
 <?php
 
+namespace Websolider;
+
 class FormField {
     public $key;
     public $label;
